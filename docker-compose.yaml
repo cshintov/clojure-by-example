@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  app:
+    build:
+        context: .
+        args:
+            - APP=${APP}
+    command: tail -F anything
+    user: "${UID}:${GID}"
+    ports:
+        - "44444:44444" # repl port
+    volumes:
+      - ./app:/code
+      - m2:/root/.m2
+      # - lein:/root/.lein
+
+volumes:
+    m2:
+    lein:
